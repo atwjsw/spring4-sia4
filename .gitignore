@@ -1,0 +1,41 @@
+/build/
+/bin/
+.springBeans
+.settings
+.project
+.classpath
+.gradle
+
+*.class
+
+#package file
+*.jar
+*.war
+*.ear
+src/main/tools/*.jar
+
+#kdiff3 ignore
+*.orig
+
+#maven ignore
+target/
+
+#eclipse ignore
+.settings/
+.project
+.classpath
+
+#idea
+.idea/
+/idea/
+*.ipr
+*.iml
+*.iws
+
+# temp file
+*.log
+
+#gradle ignore
+gradle/
+gradlew
+gradlew.bat
