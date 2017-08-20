@@ -86,12 +86,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 ////                .antMatchers("/spitter/me").access("hasRole('ROLE_USER')")
 ////                .antMatchers("/spitter/me").access("hasRole('ROLE_USER') and hasIpAddress('192.168.198.1')")
                 .antMatchers(HttpMethod.POST, "/spittles").authenticated()
-                .anyRequest().permitAll();
+                .anyRequest().permitAll()
 //                .and()
 //                .requiresChannel()
 //                .antMatchers("/spitter/register").requiresSecure()
-//                .and()
-//                .csrf()
-//                .disable();
+                .and()
+                .csrf()
+                .disable();
     }
 }

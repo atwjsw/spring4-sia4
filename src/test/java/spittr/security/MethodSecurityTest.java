@@ -39,27 +39,28 @@ public class MethodSecurityTest {
 
     @Autowired
     private SpittleService spittleService;
+//
+//    @Autowired
+//    private AuthenticationManagerBuilder auth;
 
     @Autowired
-    private AuthenticationManagerBuilder auth;
-
     private AuthenticationManager am;
 
-    @Before
-    public void setup() throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("spitter").password("password").roles("SPITTER").and()
-                .withUser("user").password("password").roles("USER").and()
-                .withUser("vip").password("password").roles("PREMIUM").and()
-                .withUser("admin").password("password").roles("SPITTER", "ADMIN");
-        am = auth.build();
-    }
+//    @Before
+//    public void setup() throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser("spitter").password("password").roles("SPITTER").and()
+//                .withUser("user").password("password").roles("USER").and()
+//                .withUser("vip").password("password").roles("PREMIUM").and()
+//                .withUser("admin").password("password").roles("SPITTER", "ADMIN");
+//        am = auth.build();
+//    }
 
     @Test
     public void spittleServiceNotNull() throws Exception {
         assertNotNull(spittleService);
-        assertNotNull(auth);
-        System.out.println(auth);
+//        assertNotNull(auth);
+//        System.out.println(auth);
 //        auth.build();
         System.out.println(am);
         assertNotNull(am);
@@ -79,7 +80,8 @@ public class MethodSecurityTest {
 
     @Test
     public void testPreAuthorizeMethod() throws Exception {
-        Authentication token = new UsernamePasswordAuthenticationToken("vip", "password");
+//        Authentication token = new UsernamePasswordAuthenticationToken("vip", "password");
+        Authentication token = new UsernamePasswordAuthenticationToken("spitter", "password");
         Authentication authentication = am.authenticate(token);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         spittleService.addSpittlePreAuthorize(new Spittle("spittle", new Date()));

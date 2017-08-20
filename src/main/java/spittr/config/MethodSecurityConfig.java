@@ -26,6 +26,19 @@ public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
                 .withUser("admin").password("password").roles("SPITTER", "ADMIN");
     }
 
+    @Bean
+    public AuthenticationManager am(AuthenticationManagerBuilder auth) throws Exception {
+        return auth.
+                inMemoryAuthentication()
+                .withUser("spitter").password("password").roles("SPITTER").and()
+                .withUser("user").password("password").roles("USER").and()
+                .withUser("vip").password("password").roles("PREMIUM").and()
+                .withUser("admin").password("password").roles("SPITTER", "ADMIN")
+                .and()
+                .and()
+                .build();
+    }
+
     @Override
     protected MethodSecurityExpressionHandler createExpressionHandler() {
         DefaultMethodSecurityExpressionHandler expressionHandler = new DefaultMethodSecurityExpressionHandler();

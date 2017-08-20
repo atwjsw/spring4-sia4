@@ -24,9 +24,19 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.directory.server/apacheds-core
 //    compile group: 'org.apache.directory.server', name: 'apacheds-core', version: '1.5.7'
     compile group: 'javax.annotation', name: 'jsr250-api', version: '1.0'
-
-
+    compile "org.springframework:spring-orm:$springVersion"
+    compile "org.hibernate:hibernate-core:$hibernateVersion"
+    compile "org.hibernate:hibernate-entitymanager:$hibernateEntityManagerVersion"
+    compile "org.springframework.data:spring-data-jpa:$springDataJpaVersion"
+    compile "javax.inject:javax.inject:1"
     compile "javax.servlet:jstl:$jstlVersion"
+
+    // https://mvnrepository.com/artifact/org.mybatis/mybatis-spring
+    compile "org.mybatis:mybatis-spring:1.3.1"
+    compile "org.mybatis:mybatis:3.3.0"
+
+//    compile group: 'org.mybatis', name: 'mybatis', version: '3.3.0'
+//    compile group: 'org.mybatis', name: 'mybatis-spring', version: '1.2.3'
 
     providedCompile "javax.servlet:javax.servlet-api:$servletApiVersion"
     providedCompile "javax.servlet.jsp:jsp-api:$jspApiVersion"
