@@ -3,8 +3,11 @@ package spittr.data.hibernate4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import spittr.data.*;
 import spittr.domain.Spitter;
@@ -16,7 +19,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=HibernateDataConfig.class)
+@ContextConfiguration(classes=HibernateEhcacheDataConfig.class)
 public class SpittleRepositoryTest {
 	
 	@Autowired
@@ -48,6 +51,7 @@ public class SpittleRepositoryTest {
 	@Transactional
 	public void findOne() {
 		Spittle thirteen = spittleRepository.findOne(13);
+		System.out.println(thirteen);
 		assertEquals(13, thirteen.getId().longValue());
 		assertEquals("Bonjour from Art!", thirteen.getMessage());
 		assertEquals(1332682500000L, thirteen.getPostedTime().getTime());
@@ -55,8 +59,12 @@ public class SpittleRepositoryTest {
 		assertEquals("artnames", thirteen.getSpitter().getUsername());
 		assertEquals("password", thirteen.getSpitter().getPassword());
 		assertEquals("Art Names", thirteen.getSpitter().getFullName());
-		assertEquals("art@habuma.com", thirteen.getSpitter().getEmail());
+		assertEquals("art@gmail.com", thirteen.getSpitter().getEmail());
 		assertTrue(thirteen.getSpitter().isUpdateByEmail());
+		Spittle thirteen2 = spittleRepository.findOne(13);
+		System.out.println(thirteen2);
+		Spittle thirteen3 = spittleRepository.findOne(13);
+		System.out.println(thirteen3);
 	}
 
 	@Test

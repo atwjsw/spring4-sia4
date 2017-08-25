@@ -1,5 +1,6 @@
 package spittr.data.hibernate4;
 
+import org.springframework.cache.annotation.Cacheable;
 import spittr.domain.Spittle;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public interface SpittleRepository {
 
   List<Spittle> findRecent(int count);
 
+  @Cacheable("spittleCache")
   Spittle findOne(long id);
 
   Spittle save(Spittle spittle);

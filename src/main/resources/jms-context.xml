@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.2.xsd
+		http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="spittr.messaging.jms.alerts"/>
+
+    <amq:connectionFactory id="connectionFactory" brokerURL="tcp://localhost:61616"/>
+    <amq:queue id="spittleQueue" physicalName="spittle.alert.queue" />
+    <amq:topic id="spittleTopic" physicalName="spittle.alert.topic" />
+    <!--<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate" c:_-ref="connectionFactory" />-->
+    <!--1. set default destination-->
+    <!--<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate" c:_-ref="connectionFactory" p:defaultDestinationName="spittle.alert.queue" />-->
+    <!--2. wire in a reference to a queue or destination bean-->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate" c:_-ref="connectionFactory" p:defaultDestination-ref="spittleQueue" />
+    <!--3. if you want to work with JSON messages, you can declare a MappingJacksonMessageConverter bean:-->
+    <bean id="messageConverter" class="org.springframework.jms.support.converter.MappingJackson2MessageConverter" />
+    <!--4. wire the MappingJacksonMessageConverter bean into JmsTemplate like this:-->
+    <!--<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate" c:_-ref="connectionFactory" p:defaultDestinationName="spittle.alert.queue"-->
+          <!--p:messageConverter-ref="messageConverter" />-->
+    <!--5. CONFIGURING MESSAGE LISTENERS, first declare the handler as a <bean>:-->
+    <!--<bean id="spittleHandler" class="spittr.spittr.messaging.jms.alerts.SpittleAlertHandler" />-->
+    <!--6. CONFIGURING MESSAGE LISTENERS declare the bean to be a message listener:-->
+    <!--<jms:listener-container connection-factory="connectionFactory" >-->
+        <!--<jms:listener destination="spitter.alert.queue" ref="spittleHandler" method="handleSpittleAlert" />-->
+    <!--</jms:listener-container>-->
+
+    <!-- this is the Message Driven POJO (MDP) -->
+    <!--<bean id="messageListener" class="spittr.spittr.messaging.jms.alerts.SpittleAlertHandler"/>-->
+
+    <!--<bean id="messageListener" class="org.springframework.jms.listener.adapter.MessageListenerAdapter">-->
+        <!--<constructor-arg>-->
+            <!--<bean class="spittr.spittr.messaging.jms.alerts.SpittleAlertHandler"/>-->
+        <!--</constructor-arg>-->
+        <!--<property name="defaultListenerMethod" value="handleSpittleAlert"/>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; and this is the message listener container &ndash;&gt;-->
+    <!--<bean id="jmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">-->
+        <!--<property name="connectionFactory" ref="connectionFactory"/>-->
+        <!--<property name="destination" ref="spittleTopic"/>-->
+        <!--<property name="messageListener" ref="messageListener" />-->
+    <!--</bean>-->
+
+
+
+</beans>

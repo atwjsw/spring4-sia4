@@ -1,4 +1,4 @@
-package spittr.data.springdata;
+package spittr.data.springdatajpa;
 
 /**
  * Created by wenda on 8/20/2017.

@@ -1,12 +1,20 @@
 package spittr.domain;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cache;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
+
 @Entity
-public class Spittle {
-	
-	private Spittle() {}
+@Cache(region="spittleCache", usage=CacheConcurrencyStrategy.READ_WRITE)
+public class Spittle implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	public Spittle() {}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

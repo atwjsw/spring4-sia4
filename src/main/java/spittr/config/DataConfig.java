@@ -11,6 +11,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import spittr.data.JdbcSpittleRepository;
+import spittr.data.SpitterRepository;
+import spittr.data.SpittleRepository;
 
 @Configuration
 @ComponentScan(basePackages="spittr.data")
@@ -30,9 +33,14 @@ public class DataConfig {
     return new JdbcTemplate(dataSource);
   }
 
+//  @Bean
+//  public NamedParameterJdbcTemplate namedParameterjdbcTemplate(DataSource dataSource) {
+//    return new NamedParameterJdbcTemplate(dataSource);
+//  }
+
   @Bean
-  public NamedParameterJdbcTemplate namedParameterjdbcTemplate(DataSource dataSource) {
-    return new NamedParameterJdbcTemplate(dataSource);
+  SpittleRepository spittleRepository(JdbcOperations jdbcOperations) {
+    return new JdbcSpittleRepository(jdbcOperations);
   }
 
 }

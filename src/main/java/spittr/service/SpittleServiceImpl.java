@@ -40,10 +40,10 @@ public class SpittleServiceImpl implements SpittleService {
         System.out.println("@PreAuthorize(\"(hasRole('ROLE_SPITTER') and #spittle.message.length() <= 10) or hasRole('ROLE_PREMIUM')\")");
     }
 
-    @PostAuthorize("returnObject.message == principal.username")
+//    @PostAuthorize("returnObject.message == principal.username")
     public Spittle getSpittleById(long id) {
         System.out.println("@PostAuthorize(\"returnObject.spitter.username == principal.username\")");
-        Spittle spittle = new Spittle("spitter", new Date());
+        Spittle spittle = new Spittle(id, "rpc for sptittle", new Date(), 1.0, 1.0);
         return spittle;
     }
 

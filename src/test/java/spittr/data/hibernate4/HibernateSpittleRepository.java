@@ -41,6 +41,12 @@ public class HibernateSpittleRepository implements SpittleRepository {
 	}
 
 	public Spittle findOne(long id) {
+		System.out.println("finding one....");
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		return (Spittle) currentSession().get(Spittle.class, id);
 	}
 

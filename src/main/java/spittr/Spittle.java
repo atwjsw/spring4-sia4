@@ -1,12 +1,13 @@
 package spittr;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class Spittle {
+public class Spittle implements Serializable {
 
   @JsonIgnore
   private final Long id;

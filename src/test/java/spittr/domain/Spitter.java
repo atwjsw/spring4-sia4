@@ -1,10 +1,13 @@
 package spittr.domain;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
-public class Spitter {
+public class Spitter implements Serializable {
 	
 	private Spitter() {}
 

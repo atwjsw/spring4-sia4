@@ -1,4 +1,4 @@
-package spittr.data.springdata;
+package spittr.data.springdatajpa;
 
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
@@ -24,8 +24,8 @@ import javax.sql.DataSource;
  * Created by wenda on 8/20/2017.
  */
 @Configuration
-@EnableJpaRepositories(basePackages = "spittr.data.springdata")
-@ComponentScan("spittr.data.springdata")
+@EnableJpaRepositories(basePackages = "spittr.data.springdatajpa")
+@ComponentScan("spittr.data.springdatajpa")
 public class SpringDataConfig {
 
     @Inject

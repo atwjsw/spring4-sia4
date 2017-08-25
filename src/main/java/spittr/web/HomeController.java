@@ -8,11 +8,14 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import spittr.messaging.jms.alerts.SpittleAlertHandler;
 
 @Controller
 //@RequestMapping("/")
 @RequestMapping({"/", "/homepage"})
 public class HomeController {
+
+
 
   @Autowired
   Environment env;

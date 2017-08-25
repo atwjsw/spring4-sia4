@@ -1,4 +1,4 @@
-package spittr.data.springdata;
+package spittr.data.springdatajpa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -1,4 +1,4 @@
-package spittr.data;
+package spittr.data.jdbc;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import spittr.Spitter;
 import spittr.config.DataConfig;
 import spittr.config.RootConfig;
+import spittr.data.SpitterRepository;
 import spittr.web.HomeController;
 
 import javax.sql.DataSource;

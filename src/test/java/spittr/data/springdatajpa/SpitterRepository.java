@@ -1,4 +1,4 @@
-package spittr.data.springdata;
+package spittr.data.springdatajpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -10,10 +10,11 @@ import spittr.config.RootConfig.WebPackage;
 
 @Configuration
 @Import(DataConfig.class)
-@ComponentScan(basePackages={"spittr"},
-        excludeFilters={
-                @Filter(type=FilterType.CUSTOM, value=WebPackage.class)
-        })
+//@ImportResource("classpath:jms-context.xml")
+//@ComponentScan(basePackages={"spittr"},
+//        excludeFilters={
+//                @Filter(type=FilterType.CUSTOM, value=WebPackage.class)
+//        })
 @PropertySource(value="classpath:app.properties")
 public class RootConfig {
   public static class WebPackage extends RegexPatternTypeFilter {
